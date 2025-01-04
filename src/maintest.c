@@ -25,12 +25,6 @@ void menu() {
     ======================
     */
     while ( *( int *)( pBuffer + jumpAux ) != 5 ) {
-        // printf( "\tDigite 1 Para Adicinar a Agenda\n" );
-        // printf( "\tDigite 2 Para Remover da Agenda\n" );
-        // printf( "\tDigite 3 Para Buscar na Agenda\n" );
-        // printf( "\tDigite 4 Para Listar a Agenda\n" );
-        // printf( "\tDigite 5 Para Sair\n\n" );
-
         fgets( ( char * )( pBuffer + jumpBuff ) , 10 , stdin );
         *( char * )( pBuffer + jumpBuff + strcspn( ( char * )( pBuffer + jumpBuff ) , "\n" ) ) = '\0';
         sscanf( ( char * )( pBuffer + jumpBuff ) , "%d" , ( int *)( pBuffer + jumpAux) );
@@ -51,7 +45,6 @@ void menu() {
         case 5:
             break;   
         default:
-            // printf( "\tDigite Um Número Válido\n\n");
             break;
         }
     }
@@ -62,16 +55,16 @@ void pop() {
     ======================  
     pop
 
-    Removes a entry in the data structure, recives a name from the user and removes the data tha has the same name, if there is no entry with that name nothing happens.
+    Removes a entry in the data structure, recives a name from the user and removes the data tha has the same name, if there is no entry with that name nothing happens, in the test version if the data struct is empty or the entry is not found the program will exit mid execution.
     ======================
     */ 
-    if ( empty( ))  {
+    if ( empty( ) ) {
         printf( "----------------------------\n" );
         printf( "Agenda Vazia\n" );
         printf( "----------------------------\n" );
+        exit( 0 );
         return;
     }
-    // printf( "\nDigite O Nome Da Pessoa A Ser Excluida: " );
     fgets( ( char * )( pBuffer + jumpBuff ) , lenghtName + 1 , stdin );
     *( void ** )( pBuffer + jumpAux ) = *( void ** )( pBuffer + jumpHead );
     *( char * )( pBuffer + jumpBuff + strcspn( ( char * )( pBuffer + jumpBuff ) , "\n" ) ) = '\0';
@@ -81,7 +74,6 @@ void pop() {
             *( void ** )( pBuffer + jumpBuff ) = **( void *** )( pBuffer + jumpAux );
             **( void *** )( pBuffer + jumpAux ) = *( void **)( **( void *** )( pBuffer + jumpAux ) +    jumpNext );
             free( *( void ** )( pBuffer + jumpBuff ) );
-            printf( "\n" );
             return;
         }
         *( void *** )( pBuffer + jumpAux ) = ( **( void *** )( pBuffer + jumpAux ) + jumpNext );
@@ -90,10 +82,10 @@ void pop() {
         *( void ** )( pBuffer + jumpBuff ) = **( void *** )( pBuffer + jumpAux );
         **( void *** )( pBuffer + jumpAux ) = *( void **)( **( void *** )( pBuffer + jumpAux ) + jumpNext );
         free( *( void ** )( pBuffer + jumpBuff ) );
-        printf( "\n" );
         return;
     } else {
         printf( "\nA Pessoa Não Está Na Agenda\n" );
+        exit( 0 );
     }
 }
 
@@ -102,7 +94,7 @@ void search() {
     ======================  
     search
 
-    Recives a name from the user and searchs the data structure for that name, if the name is found it prints all the information of that entry, if isnot found it prints that there is no entry with that name.
+    Recives a name from the user and searchs the data structure for that name, if the name is found it prints all the information of that entry, if isnot found it prints that there is no entry with that name, in the test version if the data struct is empty or the entry is not find the program will exite.
     ======================
     */
     if ( empty( ))  {
@@ -111,29 +103,17 @@ void search() {
         printf( "----------------------------\n" );
         return;
     }
-    //printf( "\nDigite O Nome Da Pessoa A Ser Procurada: " );
     fgets( ( char * )( pBuffer + jumpBuff ) , lenghtName + 1 , stdin );
     *( void ** )( pBuffer + jumpAux ) = *( void ** )( pBuffer + jumpHead );
     *( char * )( pBuffer + jumpBuff + strcspn( ( char * )( pBuffer + jumpBuff ) , "\n" ) ) = '\0';
     while ( *( void ** )( *( void ** )( pBuffer + jumpAux ) + jumpNext ) != NULL ) {
         if ( 0 == strncmp( ( char * )( pBuffer + jumpBuff ) , ( char * )( *( void ** )( pBuffer + jumpAux ) + jumpName ) , lenghtName ) ) {
-            // printf( "\nPessoa Encontrada\n" );
-            // printf( "----------------------------\n" );
-            // printf( "Nome: %s\n" ,  ( char * )(( *( void ** )( pBuffer + jumpAux ) ) + jumpName ) );
-            // printf( "Idade: %d\n" ,  *( int * )(( *( void ** )( pBuffer + jumpAux ) ) + jumpAge ) );
-            // printf( "Email: %s\n" ,  ( char * )(( *( void ** )( pBuffer + jumpAux ) ) + jumpEmail ) );
-            // printf( "----------------------------\n" );
             return;
         }
         *( void ** )( pBuffer + jumpAux ) = *( void ** )( *( void ** )( pBuffer + jumpAux ) + jumpNext );
     }
     if ( 0 == strncmp( ( char * )( pBuffer + jumpBuff ) , ( char * )( *( void ** )( pBuffer + jumpAux ) + jumpName ) , lenghtName ) ) {
-        // printf( "Pessoa Encontrada\n" );
-        // printf( "----------------------------\n" );
-        // printf( "Nome: %s\n" ,  ( char * )(( *( void ** )( pBuffer + jumpAux ) ) + jumpName ) );
-        // printf( "Idade: %d\n" ,  *( int * )(( *( void ** )( pBuffer + jumpAux ) ) + jumpAge ) );
-        // printf( "Email: %s\n" ,  ( char * )(( *( void ** )( pBuffer + jumpAux ) ) + jumpEmail ) );
-        // printf( "----------------------------\n" );
+        return;
     } else {
         printf( "\nA Pessoa Não Está Na Agenda\n" );
     }
@@ -185,22 +165,17 @@ void push() {
         printf( "Memória Não Alocada\n" );
         exit(0);
     }
-    //printf( "Digite O Nome: " );
     fgets( ( char * )( pBuffer + jumpBuff ) , lenghtName + 1 , stdin );
     *( char * )( pBuffer + jumpBuff + strcspn( ( char * )( pBuffer + jumpBuff ) , "\n" ) ) = '\0';
     strncpy( ( char * )( ( *( void ** )( pBuffer + jumpAux ) ) + jumpName ) , ( char * )( pBuffer + jumpBuff ) , lenghtName );
     
-    //printf( "Digite A Idade: " );
     fgets( ( char * )( pBuffer + jumpBuff ) , 10 , stdin );
     *( char * )( pBuffer + jumpBuff + strcspn( ( char * )( pBuffer + jumpBuff ) , "\n" ) ) = '\0';
     sscanf( ( char * )( pBuffer + jumpBuff ) , "%d" , ( int *)( ( *( void **)( pBuffer + jumpAux) ) + jumpAge ) );
     
-    // printf( "Digite O Email: " );
     fgets( ( char * )( pBuffer + jumpBuff ) , lenghtEmail + 1 , stdin );
     *( char * )( pBuffer + jumpBuff + strcspn( ( char * )( pBuffer + jumpBuff ) , "\n" ) ) = '\0';
     strncpy( ( char * )( *( void ** )( pBuffer + jumpAux ) + jumpEmail ) , ( char * )( pBuffer + jumpBuff ) , lenghtEmail );
-    
-    // printf( "\n" );
 
     *( void ** )( ( *( void ** )( pBuffer + jumpAux ) ) + jumpNext ) = NULL;
 }

@@ -11,8 +11,10 @@ int main( ) {
     ======================
     */
     add();
+    printf( "4\n" );
     searchall();
     removeall();
+    printf( "4\n" );
     printf( "5\n" );
     return 0;
 }

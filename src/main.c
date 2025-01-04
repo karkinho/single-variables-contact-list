@@ -196,7 +196,7 @@ void push() {
     sscanf( ( char * )( pBuffer + jumpBuff ) , "%d" , ( int *)( ( *( void **)( pBuffer + jumpAux) ) + jumpAge ) );
     
     printf( "Digite O Email: " );
-        fgets( ( char * )( pBuffer + jumpBuff ) , lenghtEmail + 1 , stdin );
+    fgets( ( char * )( pBuffer + jumpBuff ) , lenghtEmail + 1 , stdin );
     *( char * )( pBuffer + jumpBuff + strcspn( ( char * )( pBuffer + jumpBuff ) , "\n" ) ) = '\0';
     strncpy( ( char * )( *( void ** )( pBuffer + jumpAux ) + jumpEmail ) , ( char * )( pBuffer + jumpBuff ) , lenghtEmail );
     

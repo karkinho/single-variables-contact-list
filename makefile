@@ -3,11 +3,15 @@ all:
 	./app
 comp:
 	gcc ./src/main.c -Wall -g -o app
-	gcc ./src/tests.c -Wall -g -o tests
-	gcc ./src/mainsupressed.c -Wall -g -o appsupressed
-test:
+	gcc ./src/test.c -Wall -g -o test
+	gcc ./src/maintest.c -Wall -g -o apptest
+compsan:
+	gcc ./src/main.c -Wall -fsanitize=address -g -o app
+	gcc ./src/test.c -Wall -fsanitize=address -g -o test
+	gcc ./src/maintest.c -fsanitize=address -Wall -g -o apptest
+tests:
 	make comp
-	./tests | ./appsupressed
+	./test | ./apptest
 val:
 	make comp
-	valgrind -s ./tests | ./appsupressed
+	./test | valgrind -s ./apptest
