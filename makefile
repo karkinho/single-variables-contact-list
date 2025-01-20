@@ -1,17 +1,10 @@
-all: 
-	make comp
+all: comp
 	./app
 comp:
 	gcc ./src/main.c -Wall -g -o app
 	gcc ./src/test.c -Wall -g -o test
 	gcc ./src/maintest.c -Wall -g -o apptest
-compsan:
-	gcc ./src/main.c -Wall -fsanitize=address -g -o app
-	gcc ./src/test.c -Wall -fsanitize=address -g -o test
-	gcc ./src/maintest.c -fsanitize=address -Wall -g -o apptest
-tests:
-	make comp
-	./test | ./apptest
-val:
-	make comp
-	./test | valgrind -s ./apptest
+test: comp
+	./test 1000 | ./apptest
+val: comp
+	./test 1000 | valgrind -s ./apptest

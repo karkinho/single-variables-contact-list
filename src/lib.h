@@ -29,8 +29,6 @@ void menu();
 
 // declarations from tests.c
 
-#define quantity 100 // quantity of entry's in the test
-
 void add();
 void searchall();
 void removeall();
