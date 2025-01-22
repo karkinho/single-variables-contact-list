@@ -5,7 +5,7 @@
 
 // declarations from main.c
 
-#define lenghtName 10 // reads 2 less than it's size, lenght of name can't be less than 10, because it's used as size to a buffer that reads ints.
+#define lenghtName 10 // reads 1 less than it's size, lenght of name can't be less than 10, because it's used as size to a buffer that reads ints.
 #define lenghtEmail 40 // lenght of email needs to be higher or equal to the lenght of name and  bigger than sizeof( void * );
 #define lenghtBuff lenghtEmail + 1
 #define sizePerson sizeof( int ) + sizeof( char ) * ( lenghtName + lenghtEmail ) + sizeof( void * )

@@ -16,16 +16,16 @@ Para armazenar as informações da lista de contatos, foi utilizada uma lista en
 
 ### Memory space in the void pointer
 
-Space of sizeof(void \*_): Used as the auxiliary pointer of the program.
-Space of sizeof(void _): Used as the head of the linked list.
-Space of sizeof(sizeof(char) - (lengthEmail + 1)): Space used for reading stdin and, in the remove operation, is also used as a void \* to keep the address of the entry to be freed.
+Space of `sizeof(void ** )` : Used as the auxiliary pointer of the program.
+Space of `sizeof( void * )`: Used as the head of the linked list.
+Space of `sizeof(sizeof( char ) * (lengthEmail + 1))`: Space used for reading stdin and, in the remove operation, is also used as a `void *` to keep the address of the entry to be freed.
 
 #### PT-BR
 
 Organização de memória a partir do ponteiro void
-Espaço de sizeof(void \*_): Utilizado como ponteiro auxiliar do programa.
-Espaço de sizeof(void _): Utilizado como a cabeça da lista encadeada.
-Espaço de sizeof(sizeof(char) - (lengthEmail + 1)): Espaço utilizado para leitura do stdin e, na operação de remoção, será utilizado também como um ponteiro void para guardar o endereço da entrada a ser desalocada.
+Espaço de `sizeof( void ** )`: Utilizado como ponteiro auxiliar do programa.
+Espaço de `sizeof( void * )`: Utilizado como a cabeça da lista encadeada.
+Espaço de `sizeof( sizeof( char ) * (lengthEmail + 1) )`: Espaço utilizado para leitura do stdin e, na operação de remoção, será utilizado também como um ponteiro void para guardar o endereço da entrada a ser desalocada.
 
 ### Entry's in the data structure || Entradas na estrutura de dados
 
